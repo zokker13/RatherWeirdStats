@@ -9,44 +9,44 @@ class PlayerBuilder {
   }
 
   ladderRank1v1(value) {
-    this._player.ladderRank1v1 = value;
+    this._player.ladderRank1v1 = parseInt(value, 10);
     return this;
   }
 
   ladderStats1v1(value) {
     const stats = value.split('/');
-    this._player.ladderWins1v1 = stats[0];
-    this._player.ladderLosses1v1 = stats[1];
+    this._player.ladderWins1v1 = parseInt(stats[0], 10);
+    this._player.ladderLosses1v1 = parseInt(stats[1], 10);
     return this;
   }
 
   ladderElo1v1(value) {
-    this._player.ladderElo1v1 = value;
+    this._player.ladderElo1v1 = parseInt(value, 10);
     return this;
   }
 
   totalGames(value) {
-    this._player.totalGames = value;
+    this._player.totalGames = parseInt(value, 10);
     return this;
   }
 
   totalWins(value) {
-    this._player.totalWins = value;
+    this._player.totalWins = parseInt(value, 10);
     return this;
   }
 
   totalLosses(value) {
-    this._player.totalLosses = value;
+    this._player.totalLosses = parseInt(value, 10);
     return this;
   }
 
   disconnects(value) {
-    this._player.disconnects = value;
+    this._player.disconnects = parseInt(value, 10);
     return this;
   }
 
   desyncs(value) {
-    this._player.desyncs = value;
+    this._player.desyncs = parseInt(value, 10);
     return this;
   }
 
