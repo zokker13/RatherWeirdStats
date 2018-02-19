@@ -15,12 +15,23 @@ const SHORTGAMENAME = {
 };
 
 
-async function allPlayers(game) {
+async function allPlayers() {
+
   try {
     const resp = await got(INFOSERVER);
     const data = JSON.parse(resp.body);
 
-    return data[game].users;
+    let users = [];
+    _.each(data, (subtrees, game) => {
+      const extendedUsers = _.map(subtrees.users, (user) => {
+        user.game = game;
+        return user;
+      });
+
+      users = users.concat(extendedUsers);
+    });
+
+    return users;
   } catch (err) {
     pino.error('Something awful happened', err);
     throw err;
@@ -33,6 +44,7 @@ async function specificPlayer(game, player) {
     pino.info('targetUrl:', targetUrl);
     const rawHtml = await got(targetUrl)
     const $ = cheerio.load(rawHtml.body);
+    const players = [];
     $('li[id=calendar] div[id=calendar_wrap] table').first().children('tbody').children().each(function(idx, el) {
       // All the accounts for that user
       const desiredFields = [];
@@ -41,6 +53,7 @@ async function specificPlayer(game, player) {
       });
 
       const playerStats = new PlayerBuilder()
+        .game(game)
         .nickname(desiredFields[1])
         .ladderRank1v1(desiredFields[2])
         .ladderStats1v1(desiredFields[3])
@@ -52,13 +65,17 @@ async function specificPlayer(game, player) {
         .desyncs(desiredFields[9])
         .build();
 
-      console.log(playerStats);
+      players.push(playerStats);
     });
+
+    return players;
   } catch (err) {
     pino.error('Something awful happened', err);
     throw err;
   }
 }
 
-module.exports = allPlayers;
-module.exports.specificPlayer = specificPlayer;
+module.exports = {
+  allPlayers: allPlayers,
+  specificPlayer: specificPlayer,
+};

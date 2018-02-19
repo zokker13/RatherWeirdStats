@@ -1,0 +1,34 @@
+{
+  "name": "ratherweirdstats",
+  "version": "1.0.0",
+  "description": "A statistics server to proxy through shatabrick.com",
+  "main": "index.js",
+  "bin": {
+    "ratherweirdstats": "rather_weird_stats.js"
+  },
+  "dependencies": {
+    "argparse": "^1.0.10",
+    "bluebird": "^3.5.1",
+    "cheerio": "^1.0.0-rc.2",
+    "got": "^8.2.0",
+    "moment": "^2.20.1",
+    "mongoose": "^5.0.6",
+    "nconf": "^0.10.0",
+    "pino": "^4.11.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zokker13/RatherWeirdStats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zokker13/RatherWeirdStats/issues"
+  },
+  "homepage": "https://github.com/zokker13/RatherWeirdStats#readme"
+}

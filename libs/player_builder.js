@@ -3,6 +3,11 @@ class PlayerBuilder {
     this._player = {};
   }
 
+  game(value) {
+    this._player.game = value;
+    return this;
+  }
+
   nickname(value) {
     this._player.nickname = value;
     return this;
